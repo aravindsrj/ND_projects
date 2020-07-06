@@ -1,0 +1,2 @@
+RoboND-Kinematics-Project/gazebo_grasp_plugin:RoboND-Kinematics-Project/kr210_claw_moveit:RoboND-Kinematics-Project/kuka_arm
+-DCATKIN_DEVEL_PREFIX=/home/robond/Documents/ND_projects/kuka_arm/ndws/devel -DCMAKE_INSTALL_PREFIX=/home/robond/Documents/ND_projects/kuka_arm/ndws/install -G Unix Makefiles

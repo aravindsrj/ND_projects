@@ -1,0 +1,8 @@
+prefix=/home/robond/Documents/ND_projects/kuka_arm/ndws/install
+
+Name: kr210_claw_moveit
+Description: Description of kr210_claw_moveit
+Version: 0.3.0
+Cflags: 
+Libs: -L/home/robond/Documents/ND_projects/kuka_arm/ndws/install/lib 
+Requires: 
