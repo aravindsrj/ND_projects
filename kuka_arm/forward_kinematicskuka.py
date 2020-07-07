@@ -67,13 +67,15 @@ T5_to_6 = T5_to_6.subs(s)
 T6_to_G = Ti_to_j(q7, alpha6, a6, d7)
 T6_to_G = T6_to_G.subs(s)
 
-T0_to_2 = simplify(T0_to_1 * T1_to_2)
-T0_to_3 = simplify(T0_to_2 * T2_to_3)
-T0_to_4 = simplify(T0_to_3 * T3_to_4)
-T0_to_5 = simplify(T0_to_4 * T4_to_5)
-T0_to_6 = simplify(T0_to_5 * T5_to_6)
-T0_to_G = simplify(T0_to_6 * T6_to_G)
+T0_to_2 = T0_to_1 * T1_to_2
+T0_to_3 = T0_to_2 * T2_to_3
+T0_to_4 = T0_to_3 * T3_to_4
+T0_to_5 = T0_to_4 * T4_to_5
+T0_to_6 = T0_to_5 * T5_to_6
+T0_to_G = T0_to_6 * T6_to_G
 
+# Joint angles
+angles = {q1: 1.0, q2: 0, q3: 0, q4: 1.0, q5: 0, q6: 0}
 
 # print('T0_1 = ', T0_to_1.evalf(subs={q1:0,q2:0,q3:0,q4:0,q5:0,q6:0}))
 # print('T0_2 = ', T0_to_2.evalf(subs={q1:0,q2:0,q3:0,q4:0,q5:0,q6:0}))
@@ -94,8 +96,8 @@ R_y = Matrix([[cos(-np.pi/2),  0, sin(-np.pi/2), 0],\
               [-sin(-np.pi/2), 0, cos(-np.pi/2), 0],\
               [0,              0, 0,             1]])
 
-R_corr = simplify(R_z * R_y)
+R_corr = R_z * R_y
 
-T_total = simplify(T0_to_G * R_corr)
+T_total = T0_to_G * R_corr
 
-print('T0_G = ', T_total.evalf(subs={q1:1.0,q2:0,q3:0,q4:1.0,q5:0,q6:0}),'')
+print('T0_G = ', T_total.evalf(subs=angles))
