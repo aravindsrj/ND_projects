@@ -13,14 +13,17 @@ from sympy.matrices import Matrix
 #     return s
 
 def Ti_to_j(q, alpha, a, d):
+    '''Transformation from i frame to j frame using DH parameters
 
-    Ri_to_j = rot(q, alpha)
+    Returns: 4x4 transformation matrix
+    '''
+    Ri_to_j = _rot(q, alpha)
     Ti2j = Ri_to_j.row_join(Matrix([a, -sin(alpha)*d, cos(alpha)*d]))
     Ti2j = Ti2j.col_join(Matrix([[0, 0, 0, 1]]))
 
     return Ti2j
 
-def rot(q, alpha):
+def _rot(q, alpha):
     R_z = Matrix([[cos(q),-sin(q), 0],\
                     [sin(q),cos(q), 0],\
                     [0,0,1]])
@@ -32,6 +35,14 @@ def rot(q, alpha):
     return R_x * R_z
 
 def rotations(axis, angle):
+    '''4x4 rotation matrix along x, y or z axes
+
+    parameters:
+        'axis' should be either 'x', 'y' or 'z'
+        'angle' is the angle (in radians) to be rotated
+
+    returns: 4x4 rotation matrix
+    '''
     if axis == 'x':
         R_x = Matrix([[1, 0,          0,           0],\
                       [0, cos(angle), -sin(angle), 0],\
