@@ -28,6 +28,10 @@ s = {alpha0: 0,     a0: 0,      d1: 0.75, q1: q1,\
      alpha5: -pi/2, a5: 0,      d6: 0,    q6: q6,\
      alpha6: 0,     a6:0,       d7: 0.303, q7: 0}
 
+r = symbols('r')
+p = symbols('p')
+y = symbols('y')
+
 # Test cases format:
 # [[[EE position], [EE orientation as quaternions]], [WC location], [Joint angles]]
 test_cases = {1:[[[2.16135,-1.42635,1.55109],
@@ -59,8 +63,13 @@ R_corr = kuka_aux.rotations('z', np.pi) * kuka_aux.rotations('y',-np.pi/2)
 roll, pitch, yaw = transformations.euler_from_quaternion(test_cases[case][0][1])
 
 # Calculating end effector pose with respect to base link
-Rrpy = kuka_aux.rotations('z',yaw) * kuka_aux.rotations('y',pitch)\
-         * kuka_aux.rotations('x',roll) * R_corr
+# Rrpy = kuka_aux.rotations('z',yaw) * kuka_aux.rotations('y',pitch)\
+#          * kuka_aux.rotations('x',roll) * R_corr
+
+Rrpy1 = kuka_aux.rotations('z',y) * kuka_aux.rotations('y',p)\
+         * kuka_aux.rotations('x',r) * R_corr
+
+Rrpy = Rrpy1.subs({r: roll, p: pitch, y: yaw})
 
 # n is the vector along z axis of the gripper
 #
