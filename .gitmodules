@@ -1,3 +1,6 @@
 [submodule "perception_project/RoboND-Camera-Calibration"]
 	path = perception_project/RoboND-Camera-Calibration
 	url = git@github.com:aravindsrj/RoboND-Camera-Calibration.git
+[submodule "perception_project/RoboND-Perception-Exercises"]
+	path = perception_project/RoboND-Perception-Exercises
+	url = https://github.com/udacity/RoboND-Perception-Exercises.git
